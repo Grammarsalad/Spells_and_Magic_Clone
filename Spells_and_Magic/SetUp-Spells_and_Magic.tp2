@@ -1,0 +1,387 @@
+BACKUP ~backup/Spells_and_Magic~
+AUTHOR ~Grammarsalad~
+//README ~Spells_and_Magic\Spells_and_Magic_README.pdf~
+
+VERSION ~0.00.01~
+
+
+ALWAYS
+
+    OUTER_SPRINT ~folder~ ~Spells_and_Magic~ // Replace "Mod_Name" with the actual mod folder name. 
+	
+//is all of this necessary???
+
+ 	ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN
+          OUTER_SPRINT ~gamez~ ~eetwo~
+          OUTER_SPRINT ~vroom~ ~eegate~
+   END
+
+ 	ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+          OUTER_SPRINT ~gamez~ ~eeone~
+          OUTER_SPRINT ~vroom~ ~eegate~
+    END
+
+ 	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
+          OUTER_SPRINT ~gamez~ ~ice~
+          OUTER_SPRINT ~vroom~ ~eeice~
+    END
+
+ 	ACTION_IF GAME_IS ~bg2 bgt~ THEN BEGIN
+          OUTER_SPRINT ~gamez~ ~bgtwoold~
+          OUTER_SPRINT ~vroom~ ~gate~
+    END
+
+ 	ACTION_IF GAME_IS ~bg~ THEN BEGIN
+          OUTER_SPRINT ~gamez~ ~no~
+          OUTER_SPRINT ~vroom~ ~nope~
+    END
+
+ 	ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN
+          OUTER_SPRINT ~vroom~ ~bgee_vroom~
+    END
+
+ 	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
+          OUTER_SPRINT ~vroom~ ~iwdee_vroom~
+    END
+
+    INCLUDE ~Spells_and_Magic/Spells_and_Magic_settings.ini~ 	//player set variables 
+
+    INCLUDE ~Spells_and_Magic/lib/snm_functions.tpa~ 					//assorted functions 
+
+    INCLUDE ~Spells_and_Magic/lib/lib.tpa~  							//morph's hla functions
+
+    INCLUDE ~Spells_and_Magic/lib/scroll_placement.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/summon_table.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/splprot_attributes.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/bg2fp_effect_batches_fnp.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/bg2fp_effect_batches_b_vise.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/bg2fp_effect_batches_spell_saves.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/ClassSpellTool.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/item_casting.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/add_headers.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/add_sumtable.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/SEQUENCER_MENU.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/spell_to_innate.tpa~
+
+    INCLUDE ~Spells_and_Magic/lib/spell_clone_effects.tpa~
+
+END
+
+//Below from IWDification. Looks like a way to check spell.ids for particular spells...
+//ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_SNILLOCS_SNOWBALL_SWARM~) OR override_arcane) BEGIN
+
+//need to keep my options open
+
+ASK_EVERY_COMPONENT
+
+/* Language Settings */
+AUTO_TRA ~Spells_and_Magic/tra/%s~
+LANGUAGE ~English~ ~english~
+         ~Spells_and_Magic/tra/english/setup.tra~
+		 ~Spells_and_Magic/tra/english/new_spells.tra~  //for new spells
+		 ~Spells_and_Magic/tra/english/IWD_spells.tra~  //for IWDEE spells
+         ~Spells_and_Magic/tra/english/enchant_items.tra~
+         ~Spells_and_Magic/tra/english/cantrips.tra~  //for cantrips
+         ~Spells_and_Magic/tra/english/revised.tra~  //for revised
+         ~Spells_and_Magic/tra/english/items.tra~  //for items
+		 ~Spells_and_Magic/tra/english/icons.tra~   //icons
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////                                                                          ////////////////////////
+////////////////////////             Spells & Magic: 101-???: New and Revised Spells              ////////////////////////
+////////////////////////                                                                          ////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//@0 to @50: groups
+//@51 to @100: subcomponents
+//@101 to @900: Components
+//@901 to @1000: error and misc
+// @3000 to @4000: Requirements
+
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+///////                                                   ///////
+///////          Components 101-104: New Spells           ///////
+///////                                                   ///////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			101: Install All New Spells (including iwdee spells) 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @101  //Install All New Spells (including iwdee spells)
+SUBCOMPONENT @51 //New Spells
+DESIGNATED 101
+GROUP @0  //New and Revised Spells
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
+REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
+
+//no touch variables
+
+LAM b_spells_no_touch
+
+//set relevant variables
+
+
+  //only good for current install, so let's fix for any time ini is loaded: 
+
+  COPY ~%folder%/Spells_and_Magic_settings.ini~ ~%folder%/Spells_and_Magic_settings.ini~
+     REPLACE_TEXTUALLY ~OUTER_SET b_new_spells    = 0~ ~OUTER_SET b_new_spells    = 1~
+     REPLACE_TEXTUALLY ~OUTER_SET b_iwdee_spells  = 0~ ~OUTER_SET b_iwdee_spells  = 1~
+
+  //set the var in the orig ini
+    OUTER_SET b_new_spells    = 1
+	OUTER_SET b_iwdee_spells  = 1
+
+//SR NWN deflection compatibility
+ACTION_CLEAR_ARRAY aoe_spell
+
+///////////////////////////////////////
+//////////// player modified variables
+
+LAM b_spells_settings_global
+LAM b_spells_new_spells_settings
+LAM b_spells_iwdee_spells_settings
+LAM b_spells_cantrip_0_settings //because this gets checked on occasion
+LAM b_spells_cantrip_1_settings //because this gets checked on occasion
+
+//install iwdee spells if applicable
+ACTION_IF !(GAME_IS ~iwdee~) BEGIN  //let's eliminate iwdee spells if already
+  //arcane
+  INCLUDE ~%folder%/comp/Setup_IWD_Arcane_Spells.tpa~  //
+  //divine
+  INCLUDE ~%folder%/comp/Setup_IWD_Divine_Spells.tpa~
+END
+
+//arcane spells
+INCLUDE ~%folder%/comp/Setup_New_Arcane_Spells.tpa~  //
+
+
+//divine spells
+INCLUDE ~%folder%/comp/Setup_New_Divine_Spells.tpa~  //
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			102: Install All New Spells (excluding iwdee spells if applicable) 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @102  //Install All New Spells (excluding iwdee spells if applicable)
+SUBCOMPONENT @51 //New Spells
+DESIGNATED 102
+GROUP @0  //New and Revised Spells
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
+
+//set relevant variables
+
+LAM b_spells_no_touch
+
+  //only good for current install, so let's fix for any time ini is loaded: 
+
+  COPY ~%folder%/Spells_and_Magic_settings.ini~ ~%folder%/Spells_and_Magic_settings.ini~
+     REPLACE_TEXTUALLY ~OUTER_SET b_new_spells    = 0~ ~OUTER_SET b_new_spells    = 1~
+
+  //set the var in the orig ini
+OUTER_SET b_new_spells    = 1
+
+ACTION_IF (GAME_IS ~iwdee~) BEGIN  //Note that IWDEE spells are included if installed on iwdee (duh!)
+ OUTER_SET b_iwdee_spells  = 1
+  COPY ~%folder%/Spells_and_Magic_settings.ini~ ~%folder%/Spells_and_Magic_settings.ini~
+     REPLACE_TEXTUALLY ~OUTER_SET b_iwdee_spells  = 0~ ~OUTER_SET b_iwdee_spells  = 1~	 
+END
+
+//SR NWN deflection compatibility
+ACTION_CLEAR_ARRAY aoe_spell
+
+///////////////////////////////////////
+//////////// player modified variables
+
+LAM b_spells_settings_global
+LAM b_spells_new_spells_settings
+LAM b_spells_iwdee_spells_settings //needed? Remove existing spells if specified? 
+LAM b_spells_cantrip_0_settings //because this gets checked on occasion
+LAM b_spells_cantrip_1_settings //because this gets checked on occasion
+
+
+//arcane spells
+INCLUDE ~%folder%/comp/Setup_New_Arcane_Spells.tpa~  //
+
+
+//divine spells
+INCLUDE ~%folder%/comp/Setup_New_Divine_Spells.tpa~  //
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			103: Install Level 1 Cantrips 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @103  //Install Level 1 Cantrips
+SUBCOMPONENT @58 //Cantrips
+DESIGNATED 103
+GROUP @0  //New and Revised Spells
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			104: Install Level 0 Cantrips 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @104  //Install Level 0 Cantrips
+SUBCOMPONENT @58 //Cantrips
+DESIGNATED 104
+GROUP @0  //New and Revised Spells
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+///////                                                   ///////
+///////      Components 110-11x: Revised Spells           ///////
+///////                                                   ///////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			110: Install Local Revision: Install Revised Spells (as per the ini settings) 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @110  //Local Revision: Install Revised Spells (as per the ini settings)
+//SUBCOMPONENT @59 //Revised Spells: Global Revisions
+DESIGNATED 110
+GROUP @0  //New and Revised Spells
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
+REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
+
+//set relevant variables
+
+LAM b_spells_no_touch
+
+  //only good for current install, so let's fix for any time ini is loaded: 
+
+  COPY ~%folder%/Spells_and_Magic_settings.ini~ ~%folder%/Spells_and_Magic_settings.ini~
+     REPLACE_TEXTUALLY ~OUTER_SET b_local_revisions  = 0~ ~OUTER_SET b_local_revisions  = 1~	 
+
+  //set the var in the orig ini
+ OUTER_SET b_local_revisions  = 1
+
+//SR NWN deflection compatibility
+ACTION_CLEAR_ARRAY aoe_spell
+
+///////////////////////////////////////
+//////////// player modified variables
+
+LAM b_spells_settings_global
+LAM b_spells_settings_rev_spells
+LAM b_spells_iwdee_spells_settings //needed? Remove existing spells if specified? 
+LAM b_spells_cantrip_0_settings //because this gets checked on occasion
+LAM b_spells_cantrip_1_settings //because this gets checked on occasion
+
+
+//arcane spells
+INCLUDE ~%folder%/comp/Setup_Revised_Arcane_Spells.tpa~  //
+
+
+//divine spells
+//INCLUDE ~%folder%/comp/Setup_Revised_Divine_Spells.tpa~  //
+
+/*
+
+BEGIN @101  // Install Component Name
+SUBCOMPONENT @51 //Subcomponent Name
+DESIGNATED 101
+GROUP @0  //Group Name
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! For ee games only~
+
+///////////////////////////////////////
+//////////// player modified variables
+
+//call up and read the var categories set by player
+ LAM b_skills_n_proficiencies
+ 
+//set 'hard coded' variable(s) for this component (where relevant)
+// OUTER_SET b_ini_var  = 1
+
+//install iwdee spells if applicable
+
+ACTION_IF ("%vroom%" STRING_COMPARE_CASE "eeice" != 0) BEGIN      //Difference in vroom -- e.g. Not IWDEE vroom
+//  INCLUDE ~%folder%/engine/b_stuff.tpa~  //
+END
+
+ACTION_IF ("%vroom%" STRING_COMPARE_CASE "eeice" = 0) BEGIN      //Difference in style -- e.g. IS IWDEE style
+//  INCLUDE ~%folder%/engine/b_stuff.tpa~  //
+END
+
+
+
+//the actual component(s)
+// INCLUDE ~%folder%/components/SUBFOLDER/Setup_Component.tpa~  //
+
+
+//_______________________________
+//
+//	###: Component Name (102)
+//
+//_________________________________________
+
+BEGIN @102  // Install Component Name
+SUBCOMPONENT @51 //Subcomponent Name
+DESIGNATED 102
+GROUP @0  //Group Name
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! For ee games only~
+
+//set relevant variable(s) (from ini) relevant to this component  
+OUTER_SET b_ini_var  = 2
+
+
+///////////////////////////////////////
+//////////// player modified variables
+
+//call up and red the var categories
+LAM b_group_var_settings
+
+//install iwdee spells if applicable
+
+ACTION_IF ("%style%" STRING_COMPARE_CASE "iwdee_style" != 0) BEGIN      //Difference in style -- e.g. Not IWDEE style
+//  INCLUDE ~%folder%/engine/b_stuff.tpa~  //
+END
+
+ACTION_IF ("%style%" STRING_COMPARE_CASE "iwdee_style" = 0) BEGIN      //Difference in style -- e.g. IS IWDEE style
+//  INCLUDE ~%folder%/engine/b_stuff.tpa~  //
+END
+
+
+//the actual component(s)
+// INCLUDE ~%folder%/comp/Setup_Component.tpa~  //
+
+*/

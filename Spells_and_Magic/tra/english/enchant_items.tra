@@ -1,0 +1,107 @@
+// Spells and Magic, American English
+//Craft scroll Range: @115003 to @116000
+//Craft Wand Range: @116001 to @117000
+//
+
+
+///////////////////////////////////////////////////////////////////////////
+// Craft Scroll @115003 to @116000                                                              //
+///////////////////////////////////////////////////////////////////////////
+@115003 = ~Scribe Scrolls~
+@115004 = ~You must have a spell memorized in order to scribe a scroll.  Try again when you have memorized at least one spell.~
+@115005 = ~You must have at least 100 gold to scribe a scroll.  Try again when you have 100 gold or more.~
+
+@115006 = ~1st Level Arcane Scrolls~
+@115007 = ~2nd Level Arcane Scrolls~
+@115008 = ~3rd Level Arcane Scrolls~
+@115009 = ~4th Level Arcane Scrolls~
+@115010 = ~5th Level Arcane Scrolls~
+@115011 = ~6th Level Arcane Scrolls~
+@115012 = ~7th Level Arcane Scrolls~
+@115013 = ~8th Level Arcane Scrolls~
+@115014 = ~9th Level Arcane Scrolls~
+
+@115015 = ~Exit~
+@115016 = ~Select another Spell Level~
+@115017 = ~Scribe Scroll
+This ability allows you to scribe a scroll from a spell that you currently have memorized if you have the gold.~
+@115018 = ~You must have at least 100 experience points to scribe a spell.  Try again when you have attained the required experience.~
+@115019 = ~Select Spell Level~
+
+//Apologies. Revised tra ref @11520 to @226028 yet again. Shouldn't happen again. Please delete this line after translation
+//TRANSLATOR NOTE: Do not translate "%lowest_arcane_gold_x%"
+@115020 = ~1st Arcane Scrolls (Requires Minimum %lowest_arcane_1% gold)~
+@115021 = ~2nd Arcane Scrolls (Requires Minimum %lowest_arcane_2% gold)~
+@115022 = ~3rd Arcane Scrolls (Requires Minimum %lowest_arcane_3% gold)~
+@115023 = ~4th Arcane Scrolls (Requires Minimum %lowest_arcane_4% gold)~
+@115024 = ~5th Arcane Scrolls (Requires Minimum %lowest_arcane_5% gold)~
+@115025 = ~6th Arcane Scrolls (Requires Minimum %lowest_arcane_6% gold)~
+@115026 = ~7th Arcane Scrolls (Requires Minimum %lowest_arcane_7% gold)~
+@115027 = ~8th Arcane Scrolls (Requires Minimum %lowest_arcane_8% gold)~
+@115028 = ~9th Arcane Scrolls (Requires Minimum %lowest_arcane_9% gold)~
+
+//create scroll innate
+@115100 = ~Create Scroll~
+@115101 = ~Create Scroll
+This ability allows you to scribe a scroll from a spell that you currently have memorized if you have the gold.~
+//create scroll kit
+@115102 = ~Scroll Kit~
+
+@115103 = ~Scroll Kit
+This pack contains inks, a fine quill, and plenty of parchment.
+
+When you aquire a scroll kit, it comes complete with 100 'materials', an abstracted set of material components needed for scroll creation. You need 1 unit of 'material' per level of the spell you wish to scribe as a scroll.
+
+While this kit comes with basic materials, you can replenish it with materials of any quality.
+
+STATISTICS:
+'Materials': 100
+Weight: 6
+
+Special Note: Do not have more 'materials' in your inventory than you need for a particular scroll you plan to create (keep any extras in your scroll kit item). This will help to avoid the loss of extra materials.~
+@115104 = ~Standard Scroll Creation Materials~
+
+@115105 = ~Standard Scroll Creation Materials
+Use these materials to create a scroll. The quality of these materials are such that you can only create up to level 3 scrolls. Note that you need 1 of these for each level of the scroll you plan to create. So, if you are creating a scroll of a 5th level spell, then you need 5 of these on hand.
+
+Special Note: Do not have more 'materials' in your inventory than you need for a particular scroll you plan to create (keep any extras in your scroll kit item). This will help to avoid the loss of extra materials.~
+@115106 = ~Quality Scroll Creation Materials~
+
+@115107 = ~Quality Scroll Creation Materials
+Use these materials to create a scroll. The quality of these materials is above average, and can be used to create up to level 6 scrolls. Note that you need 1 of these for each level of the scroll you plan to create. So, if you are creating a scroll of a 5th level spell, then you need 5 of these on hand.
+
+Special Note: Do not have more 'materials' in your inventory than you need for a particular scroll you plan to create (keep any extras in your scroll kit item). This will help to avoid the loss of extra materials.~
+@115108 = ~Masterwork Scroll Creation Materials~
+
+@115109 = ~Masterwork Scroll Creation Materials
+Use these materials to create a scroll. These materials are of the highest quality, allowing the creation of any level scroll. Note that you need 1 of these for each level of the scroll you plan to create. So, if you are creating a scroll of a 5th level spell, then you need 5 of these on hand.
+
+Special Note: Do not have more 'materials' in your inventory than you need for a particular scroll you plan to create (keep any extras in your scroll kit item). This will help to avoid the loss of extra materials.~
+
+//TRANSLATION NOTE: Do Not Translate "%s_name%" below.
+@115110 = ~Create scroll of %s_name%~
+
+//TRANSLATION NOTE: Do Not Translate "%x_divine_gold%" below.
+@115111 = ~1st Level Divine Scrolls (Requires Minimum %lowest_divine_1% gold)~
+@115112 = ~2nd Level Divine Scrolls (Requires Minimum %lowest_divine_2% gold)~
+@115113 = ~3rd Level Divine Scrolls (Requires Minimum %lowest_divine_3% gold)~
+@115114 = ~4th Level Divine Scrolls (Requires Minimum %lowest_divine_4% gold)~
+@115115 = ~5th Level Divine Scrolls (Requires Minimum %lowest_divine_5% gold)~
+@115116 = ~6th Level Divine Scrolls (Requires Minimum %lowest_divine_6% gold)~
+@115117 = ~7th Level Divine Scrolls (Requires Minimum %lowest_divine_7% gold)~
+
+@115118 = ~1st Level Divine Scrolls~
+@115119 = ~2nd Level Divine Scrolls~
+@115120 = ~3rd Level Divine Scrolls~
+@115121 = ~4th Level Divine Scrolls~
+@115122 = ~5th Level Divine Scrolls~
+@115123 = ~6th Level Divine Scrolls~
+@115124 = ~7th Level Divine Scrolls~
+
+@116000 = ~[LAST SCROLL]~
+
+///////////////////////////////////////////////////////////////////////////
+// Craft Wand @116001 to @117000                                                             //
+///////////////////////////////////////////////////////////////////////////
+
+@499999 = ~[LAST TRA HERE]~
