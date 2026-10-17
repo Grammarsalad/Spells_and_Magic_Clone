@@ -1,7 +1,10 @@
 ﻿# Spells & Magic
 
 # log
+2026-10-17
 
+- Initial Upload Clone Version
+- 
 2025-12-01
 
 - Color spray blind immune and alter level immune 
