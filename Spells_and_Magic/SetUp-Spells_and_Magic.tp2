@@ -127,10 +127,44 @@ LANGUAGE ~English~ ~english~
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//			101: Install 2e Player's Handbook Spells 
+//			101: Install 2e Player's Handbook Spells - Wizard and Priest
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
+BEGIN @101  //Install All New Spells (including iwdee spells)
+SUBCOMPONENT @51 //New Spells
+DESIGNATED 101
+GROUP @0  //New and Revised Spells
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
+REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			102: Install 2e Player's Handbook Spells - Wizard Only
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @102  //Install 2e Player's Handbook Spells - Wizard Only
+SUBCOMPONENT @51 //New Spells
+DESIGNATED 101
+GROUP @0  //New and Revised Spells
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
+REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			103: Install 2e Player's Handbook Spells - Priest Only
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @103  //Install 2e Player's Handbook Spells - Priest Only
+SUBCOMPONENT @51 //New Spells
+DESIGNATED 101
+GROUP @0  //New and Revised Spells
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
+REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
 
 // Completely starting over because I need to relearn...
 /*

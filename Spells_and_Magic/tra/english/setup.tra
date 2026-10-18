@@ -22,10 +22,10 @@
 
 //@101 to @900: Components
 // new spells
-@101 = ~Install All New Spells (including iwdee spells)~
-@102 = ~Install All New Spells (excluding iwdee spells if applicable)~
+@101 = ~Install 2e Player's Handbook Spells - Wizard and Priest~
+@102 = ~Install 2e Player's Handbook Spells - Wizard Only~
+@103 = ~Install 2e Player's Handbook Spells - Priest Only~
 //cantrips 
-@103 = ~Install Level 1 Cantrips~
 @104 = ~Install Level 0 Cantrips~
 //revisions
 @110 = ~Install Local Revision: Install Revised Spells (as per the ini settings)~
