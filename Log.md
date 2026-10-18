@@ -1,9 +1,11 @@
 ﻿# Spells & Magic
 
 # log
+
 2026-10-17
 
 - Initial Upload Clone Version
+- Created initial PHB spell component skeleton, though need to do the text (completely starting over)
 - 
 2025-12-01
 
