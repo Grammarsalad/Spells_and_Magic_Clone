@@ -147,7 +147,7 @@ REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
 
 BEGIN @102  //Install 2e Player's Handbook Spells - Wizard Only
 SUBCOMPONENT @51 //New Spells
-DESIGNATED 101
+DESIGNATED 102
 GROUP @0  //New and Revised Spells
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
 REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
@@ -161,7 +161,7 @@ REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
 
 BEGIN @103  //Install 2e Player's Handbook Spells - Priest Only
 SUBCOMPONENT @51 //New Spells
-DESIGNATED 101
+DESIGNATED 103
 GROUP @0  //New and Revised Spells
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @901 // ~EE games only! ... for now~
 REQUIRE_PREDICATE !GAME_IS ~iwdee~ @903 // ~Not applicable to IWDEE~
