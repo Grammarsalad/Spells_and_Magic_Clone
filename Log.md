@@ -2,11 +2,16 @@
 
 # log
 
+Version 0.91.03
+
 2026-10-17
 
 - Initial Upload Clone Version
 - Created initial PHB spell component skeleton, though need to do the text (completely starting over)
+- Update Weidu
+- Alarm subspell name updated to Alarm Triggered
 - 
+
 2025-12-01
 
 - Color spray blind immune and alter level immune 
