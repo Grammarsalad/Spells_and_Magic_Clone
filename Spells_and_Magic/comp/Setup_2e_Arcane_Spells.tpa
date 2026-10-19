@@ -42,6 +42,9 @@ COPY ~%folder%/data/new_spells/mage_1/b_alarm.spl~ ~override~   //spl alarm
   SAY NAME1 @65200
   SAY NAME2 @65200
 
+//eff
+COPY ~%folder%/data/new_spells/mage_1/b_alarm.eff~ ~override~   //itm alarm
+
 //itm
 COPY ~%folder%/data/new_spells/mage_1/b_w101.itm~ ~override~   //itm alarm
 //baf
@@ -86,7 +89,7 @@ LAF ADD_ICONS
            iconA
            iconB
            iconC
-           iconP
+           iconP                         //name of portrait icon
 END
 
 
@@ -94,7 +97,7 @@ END
 
 COPY_EXISTING ~b_alarm.spl~ ~override~
   LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %port_icon% END           //
-
+  LPF ALTER_EFFECT INT_VAR match_opcode = 240 parameter2 = %port_icon% END           //
 
 
 ////////////////////////////////////////////

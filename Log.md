@@ -10,7 +10,8 @@ Version 0.91.03
 - Created initial PHB spell component skeleton, though need to do the text (completely starting over)
 - Update Weidu
 - Alarm subspell name updated to Alarm Triggered
-- 
+- Alarm finished (I think)
+- Learned I need mod merge even with _just_ BGEE. Okay, kinda annoying. 
 
 2025-12-01
 

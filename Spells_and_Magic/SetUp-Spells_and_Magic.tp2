@@ -176,6 +176,7 @@ LAM b_spells_cantrip_1_settings //because this gets checked on occasion
 //arcane spells
 INCLUDE ~%folder%/comp/Setup_2e_Arcane_Spells.tpa~  //
 
+
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
