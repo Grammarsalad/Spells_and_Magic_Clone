@@ -39,8 +39,8 @@ ACTION_IF (%b_alarm% > 0) BEGIN  //
 //we can just copy the spell over. No need to take up an ids entry
 
 COPY ~%folder%/data/new_spells/mage_1/b_alarm.spl~ ~override~   //spl alarm
-  SAY NAME1 @65201
-  SAY NAME2 @65201
+  SAY NAME1 @65200
+  SAY NAME2 @65200
 
 //itm
 COPY ~%folder%/data/new_spells/mage_1/b_w101.itm~ ~override~   //itm alarm
@@ -60,6 +60,7 @@ ADD_SPELL ~%folder%/data/new_spells/mage_1/b_w101.spl~ 2 1 ~WIZARD_ALARM_SPELL~ 
         SAY NAME2 @65201
         SAY UNIDENTIFIED_DESC @65202
 	SAY DESC @65202
+	
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_ALARM_SPELL~
   RET spell_res
@@ -90,19 +91,11 @@ END
 
 
 
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~INNATE_ALARM~
-  RET spell_res
-END
 
-COPY_EXISTING ~%spell_res%.spl~ ~override~
+COPY_EXISTING ~b_alarm.spl~ ~override~
   LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %port_icon% END           //
 
 
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_ALARM_SPELL~
-  RET spell_res
-END
 
 ////////////////////////////////////////////
 ////////    Place Scrolls
@@ -112,7 +105,7 @@ COPY ~%folder%\lib\scroll_stores\place_wiz_scrolls.tpa~ ~%folder%\lib\scroll_sto
   REPLACE_TEXTUALLY "BEGIN" "BEGIN
 ~%scroll_name%~ => ~1~"
 
-/*
+
 
 ////////////////////////////
 //////Compatibility
@@ -162,8 +155,9 @@ COPY ~%folder%\lib\spell_lists\remove_list.tpa~ ~%folder%\lib\spell_lists\prot_l
     LAF ADD_CLASS_SPELL STR_VAR resref = EVAL ~%spell_res%~ scroll= EVAL ~%scroll_name%~ class_include=~{'MAGE_ALL', 'SORCERER', 'RANGER', 'BARD'}~ END
  END
 
+
 END //end alarm
-*/
+
 
 /*
 // We're starting from the beginning
