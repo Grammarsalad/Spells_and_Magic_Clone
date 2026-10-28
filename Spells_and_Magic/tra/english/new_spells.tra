@@ -22,6 +22,25 @@ This spell cannot be cast in the presence of enemies.
 
 The spell dissipates when the alarm is activated.~
 
+@65205 = ~Affect Fires~
+@65206 = ~Affect Fires
+(Alteration)
+
+Level: 1
+Range: 0
+Duration: 1 round or instant
+Casting Time: 0 or 1
+Area of Effect: Special
+Saving Throw: Special
+
+This spell gives the wizard limited ability to control nearby sources of flame. Against normal creatures, this spell has limited potential. It causes a nearby flame to singe them for 1d6 damage if they don't save vs. breath. 
+
+But, this spell allows the wizard to directly inhibit and damage any fire based creature, such as a fire elemental. Such creatures suffer 2d8 cold damage, and have their speed reduced by 20% for 3 rounds. If they save vs. spell, they only take 1d8 points of damage, and their movement is not affected.
+
+Conversly, <HESHE> can heal any allied fire creature by 2d8 damage, and increase their speed by 20% for 3 rounds.~
+
+
+
 /*
 //DIVINE SPELLS
 //@50000
