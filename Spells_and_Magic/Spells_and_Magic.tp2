@@ -52,6 +52,7 @@ ALWAYS
 		INCLUDE ~magic_settings\Spells_and_Magic_settings.ini~ 	//player set variables
 	END ELSE BEGIN
 		INCLUDE ~Spells_and_Magic/Spells_and_Magic_settings.ini~ 	//player set variables 
+		COPY ~%folder%/Spells_and_Magic_settings.ini~ ~magic_settings\Spells_and_Magic_settings.ini~
 	END
 
     INCLUDE ~Spells_and_Magic/lib/snm_functions.tpa~ 					//assorted functions 
@@ -154,8 +155,9 @@ LAM b_spells_cantrip_0_settings //because this gets checked on occasion
 LAM b_spells_cantrip_1_settings //because this gets checked on occasion
 
 //for compatibility
-COPY ~%folder%/Spells_and_Magic_settings.ini~ ~magic_settings\Spells_and_Magic_settings.ini~
-
+//COPY ~%folder%/Spells_and_Magic_settings.ini~ ~magic_settings\Spells_and_Magic_settings.ini~
+// PATCH_PRINT "%b_affect_fires% should be 1"
+ 
 //arcane spells
 //INCLUDE ~%folder%/comp/Setup_2e_Arcane_Spells.tpa~  //
 
