@@ -4,6 +4,10 @@
 
 Version 0.91.03
 
+2026-11-05
+
+- More skeleton work for revised SPELLS
+
 2026-11-04
 
 - Burning hands no save
