@@ -343,3 +343,10 @@ Saving Throw: None
 This spell instills the recipient with an insight into the heart of evil.  For a full turn, they can recognize evil on sight.
 
 Further, the target gains a +2 bonus to attack and damage against evil creatures, undead, or summoned creatures.~
+
+@10110202 = ~Saving Throw: 1/2~
+@10110203 = ~Saving Throw: None~
+
+@10110204 = ~Those successfully saving vs. Spell receive half damage.~
+@10110205 = ~There is no save against this damage, though fire resistance can reduce the damage received.~
+

@@ -4,6 +4,11 @@
 
 Version 0.91.03
 
+2026-11-04
+
+- Burning hands no save
+- Shells for other revised spells 
+
 2026-10-17
 
 - Initial Upload Clone Version
